@@ -5,11 +5,11 @@ DIR_CONFIG="/etc/v2ray"
 DIR_RUNTIME="/usr/bin"
 DIR_TMP="$(mktemp -d)"
 
-if [ "$0" = "" ]; then
+if [ "${ID}" = "" ]; then
 　　ID="$0"
 fi
 
-if [ "$1" = "" ]; then
+if [ "${WSPATH}" = "" ]; then
 　　WSPATH="$1"
 fi
 
