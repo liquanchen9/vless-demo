@@ -5,6 +5,15 @@ DIR_CONFIG="/etc/v2ray"
 DIR_RUNTIME="/usr/bin"
 DIR_TMP="$(mktemp -d)"
 
+if [ "$0" = "" ]; then
+　　ID="$0"
+fi
+
+if [ "$1" = "" ]; then
+　　WSPATH="$1"
+fi
+
+
 # Write V2Ray configuration
 cat << EOF > ${DIR_TMP}/heroku.json
 {
