@@ -6,11 +6,11 @@ DIR_RUNTIME="/usr/bin"
 DIR_TMP="$(mktemp -d)"
 
 if [ "${ID}" = "" ]; then
-　　ID="$0"
+　　ID="$1"
 fi
 
 if [ "${WSPATH}" = "" ]; then
-　　WSPATH="$1"
+　　WSPATH="$2"
 fi
 
 
