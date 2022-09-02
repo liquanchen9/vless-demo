@@ -4,6 +4,9 @@
 DIR_CONFIG="/etc/v2ray"
 DIR_RUNTIME="/usr/bin"
 DIR_TMP="$(mktemp -d)"
+if [ "${ID}" = "" ]; then
+　　ID="${WEBSITE_INSTANCE_ID}"
+fi
 
 # Write V2Ray configuration
 cat << EOF > ${DIR_TMP}/heroku.json
