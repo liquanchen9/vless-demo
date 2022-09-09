@@ -6,13 +6,13 @@ DIR_RUNTIME="/usr/bin"
 DIR_TMP="$(mktemp -d)"
 
 if [ "${ID}" = "" ]; then
-　　ID="$1"
+export ID="$1"
 fi
-
-if [ "${WSPATH}" = "" ]; then
-　　WSPATH="$2"
+echo "${ID}"
+if [ "$WSPATH" = "" ]; then
+export WSPATH="$2"
 fi
-
+echo "${WSPATH}"
 
 # Write V2Ray configuration
 cat << EOF > ${DIR_TMP}/heroku.json
