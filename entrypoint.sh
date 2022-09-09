@@ -54,4 +54,4 @@ rm -rf ${DIR_TMP}
 
 # Run V2Ray
 # ${DIR_RUNTIME}/v2ray -config=${DIR_CONFIG}/config.pb
-${DIR_RUNTIME}/v2ray --config=${DIR_CONFIG}/config.json
+${DIR_RUNTIME}/v2ray run --config=${DIR_CONFIG}/config.json
