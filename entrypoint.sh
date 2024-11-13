@@ -67,6 +67,7 @@ Address = 192.168.99.249/32
 [Peer]
 PublicKey = /gwzvJbtHHeXLKjoUe4XfJD014RlrnVPgf0PFsz0vhE=
 AllowedIPs = 192.168.99.0/24
+PersistentKeepalive = 25
 Endpoint = ${WG_ENDPOINT}:55825
 EOF
 # whereis ip
@@ -74,10 +75,11 @@ EOF
 # 开启 wg
 wg-quick up wg0
 # 不交互下 不会进行联通。。。这坑啊
-ping 192.168.99.1 -c 10
+ping 192.168.99.1 -c 1
 fi
 
 # Run V2Ray
 # ${DIR_RUNTIME}/v2ray -config=${DIR_CONFIG}/config.pb
 cat ${DIR_CONFIG}/config.json
 ${DIR_RUNTIME}/v2ray run --config=${DIR_CONFIG}/config.json
+# docker run  --cap-add=NET_ADMIN -e PORT=8080  -e ID=7b01ffb3-ade8-4e26-808a-032c86f8d67e -e WSPATH=1ws -e
