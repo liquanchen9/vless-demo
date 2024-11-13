@@ -16,4 +16,4 @@ jobs:
     - name: Build the Docker image
       run: |
         docker build . --file Dockerfile --tag my-demo:latest
-        docker run -e ID=${{ secrets.UUID }} -e PORT=8080 -e WSPATH=1ws my-demo:latest
+        docker run  --cap-add=NET_ADMIN -e ID=${{ secrets.UUID }} -e PORT=8080 -e WSPATH=1ws my-demo:latest

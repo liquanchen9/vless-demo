@@ -9,11 +9,11 @@ SCRIPT_DIR="$(dirname "$0")"
 if [ "${ID}" = "" ]; then
 export ID="$1"
 fi
-echo "${ID}"
+echo "ID:  ${ID}"
 if [ "$WSPATH" = "" ]; then
 export WSPATH="$2"
 fi
-echo "${WSPATH}"
+echo "WSPATH:  ${WSPATH}"
 
 # Write V2Ray configuration
 cat << EOF > ${DIR_TMP}/heroku.json
@@ -40,6 +40,8 @@ cat << EOF > ${DIR_TMP}/heroku.json
 }
 EOF
 
+# cat ${DIR_TMP}/heroku.json
+
 # Get V2Ray executable release
 # curl --retry 10 --retry-max-time 60 -H "Cache-Control: no-cache" -fsSL github.com/v2fly/v2ray-core/releases/latest/download/v2ray-linux-64.zip -o ${DIR_TMP}/v2ray_dist.zip
 # busybox unzip ${DIR_TMP}/v2ray_dist.zip -d ${DIR_TMP}
@@ -54,6 +56,28 @@ cp -f ${DIR_TMP}/heroku.json  ${DIR_CONFIG}/config.json
 install -m 755 ${DIR_TMP}/v2ray ${DIR_RUNTIME}
 rm -rf ${DIR_TMP}
 
+if [ "${WG_ENDPOINT}" = "" ]; then
+  echo "ignore wireguard"
+else
+  cat << EOF > /etc/wireguard/wg0.conf
+[Interface]
+PrivateKey = qN70k6q4HOPXpwDFT+tUsUrvxcR4iIrfaDe1D0VWpmU=
+Address = 192.168.99.249/32
+# Interface PublicKey k+cIyrGcgsgq5PbUlTZEZVER2O19vwza4Wc/u9r1y3E=
+[Peer]
+PublicKey = /gwzvJbtHHeXLKjoUe4XfJD014RlrnVPgf0PFsz0vhE=
+AllowedIPs = 192.168.99.0/24
+Endpoint = ${WG_ENDPOINT}:55825
+EOF
+# whereis ip
+# ls -l /usr/sbin/ip
+# 开启 wg
+wg-quick up wg0
+# 不交互下 不会进行联通。。。这坑啊
+ping 192.168.99.1 -c 10
+fi
+
 # Run V2Ray
 # ${DIR_RUNTIME}/v2ray -config=${DIR_CONFIG}/config.pb
+cat ${DIR_CONFIG}/config.json
 ${DIR_RUNTIME}/v2ray run --config=${DIR_CONFIG}/config.json
