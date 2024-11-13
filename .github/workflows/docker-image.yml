@@ -2,7 +2,8 @@ name: Test Docker Image CI
 
 on:
   schedule:
-  - cron: "*/1 * * * *"
+  # - cron: "*/1 * * * *"
+  - cron: "0 0 0 * *"
   
 jobs:
 
@@ -15,4 +16,4 @@ jobs:
     - name: Build the Docker image
       run: |
         docker build . --file Dockerfile --tag my-demo:latest
-        docker run -e ID=3e471c98-b107-4d7f-98c8-ab18e29c2faf -e PORT=8080 -e WSPATH=ws my-demo:latest
+        docker run -e ID=${{ secrets.UUID }} -e PORT=8080 -e WSPATH=1ws my-demo:latest
