@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: start wireguard v2ray
 
 on:
   schedule:
@@ -11,7 +11,7 @@ jobs:
     - uses: actions/checkout@v4
     - name: start wireguard and v2ray 
       run: |
-        apt install wireguard -y
+        sudo apt install wireguard -y
         echo "${{ secrets.ALIYUN_SERVER_PUBKEY }} "
         
       
