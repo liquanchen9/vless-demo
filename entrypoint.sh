@@ -65,7 +65,7 @@ PrivateKey = qN70k6q4HOPXpwDFT+tUsUrvxcR4iIrfaDe1D0VWpmU=
 Address = 192.168.99.249/32
 # Interface PublicKey k+cIyrGcgsgq5PbUlTZEZVER2O19vwza4Wc/u9r1y3E=
 [Peer]
-PublicKey = /gwzvJbtHHeXLKjoUe4XfJD014RlrnVPgf0PFsz0vhE=
+PublicKey = ${ALIYUN_SERVER_PUBKEY}
 AllowedIPs = 192.168.99.0/24
 PersistentKeepalive = 25
 Endpoint = ${WG_ENDPOINT}:55825
@@ -82,4 +82,3 @@ fi
 # ${DIR_RUNTIME}/v2ray -config=${DIR_CONFIG}/config.pb
 cat ${DIR_CONFIG}/config.json
 ${DIR_RUNTIME}/v2ray run --config=${DIR_CONFIG}/config.json
-# docker run  --cap-add=NET_ADMIN -e PORT=8080  -e ID=7b01ffb3-ade8-4e26-808a-032c86f8d67e -e WSPATH=1ws -e
