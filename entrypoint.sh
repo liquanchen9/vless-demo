@@ -75,7 +75,7 @@ EOF
 # 开启 wg
 wg-quick up wg0
 # 不交互下 不会进行联通。。。这坑啊
-ping 192.168.99.1 -c 1
+ping 192.168.99.1 -c 3
 fi
 
 # Run V2Ray
