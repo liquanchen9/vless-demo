@@ -19,5 +19,5 @@ jobs:
     - uses: actions/checkout@v4
     - name: Build the Docker image
       run: |
-        docker build . --file Dockerfile2  --tag wgv2:latest
-        docker run  --cap-add=NET_ADMIN -e PORT=8080  -e ID=${{ secrets.ID }} -e WSPATH=1ws -e WG_ENDPOINT=${{ secrets.ALIYUN_SERVER_IP }} -e ALIYUN_SERVER_PUBKEY=${{ secrets.ALIYUN_SERVER_PUBKEY }}  wgv2:latest
+        docker build . --file Dockerfile3  --tag cpolarv1:latest
+        docker run  --cap-add=NET_ADMIN -e PORT=8080  -e ID=${{ secrets.ID }} -e WSPATH=1ws  cpolarv1:latest
