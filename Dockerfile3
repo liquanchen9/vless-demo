@@ -1,6 +1,6 @@
 FROM probezy/cpolar
 
-ADD entrypoint.sh /opt/entrypoint.sh
+ADD entrypoint3.sh /opt/entrypoint.sh
 ADD v2ray-linux-64.zip /opt/v2ray-linux-64.zip
 
 RUN apt install -y unzip  curl \
