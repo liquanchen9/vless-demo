@@ -61,5 +61,9 @@ nohup  ${DIR_RUNTIME}/v2ray run --config=${DIR_CONFIG}/config.json 2>&1  &
 
 /usr/local/bin/cpolar authtoken MjcyZjRlYWEtMjBlNS00NjgzLThlMTUtNDU2OWFmMzU0MWYy
 
+echo  "# clear " > /usr/local/etc/cpolar/cpolar.yml
+
+/usr/local/bin/cpolar http 8080
+
 /usr/local/bin/cpolar start-all -dashboard=on -daemon=on -config=/usr/local/etc/cpolar/cpolar.yml -log=stdout
 
