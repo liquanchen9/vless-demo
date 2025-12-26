@@ -18,7 +18,23 @@ echo "WSPATH:  ${WSPATH}"
 # Write V2Ray configuration
 cat << EOF > ${DIR_TMP}/heroku.json
 {
-    "inbounds": [{
+    "inbounds": [ {
+      "tag": "http",
+      "port": 10809,
+      "listen": "0.0.0.0",
+      "protocol": "http",
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls"
+        ]
+      },
+      "settings": {
+        "udp": false,
+        "allowTransparent": false
+      }
+    },{
         "port": ${PORT},
         "protocol": "vless",
         "settings": {
@@ -56,27 +72,6 @@ cp -f ${DIR_TMP}/heroku.json  ${DIR_CONFIG}/config.json
 install -m 755 ${DIR_TMP}/v2ray ${DIR_RUNTIME}
 rm -rf ${DIR_TMP}
 
-if [ "${WG_ENDPOINT}" = "" ]; then
-  echo "ignore wireguard"
-else
-  cat << EOF > /etc/wireguard/wg0.conf
-[Interface]
-PrivateKey = qN70k6q4HOPXpwDFT+tUsUrvxcR4iIrfaDe1D0VWpmU=
-Address = 192.168.99.249/32
-# Interface PublicKey k+cIyrGcgsgq5PbUlTZEZVER2O19vwza4Wc/u9r1y3E=
-[Peer]
-PublicKey = ${ALIYUN_SERVER_PUBKEY}
-AllowedIPs = 192.168.99.0/24
-PersistentKeepalive = 25
-Endpoint = ${WG_ENDPOINT}:55825
-EOF
-# whereis ip
-# ls -l /usr/sbin/ip
-# 开启 wg
-wg-quick up wg0
-# 不交互下 不会进行联通。。。这坑啊
-ping 192.168.99.1 -c 3
-fi
 
 # Run V2Ray
 # ${DIR_RUNTIME}/v2ray -config=${DIR_CONFIG}/config.pb
