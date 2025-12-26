@@ -60,7 +60,7 @@ cat ${DIR_CONFIG}/config.json
 nohup  ${DIR_RUNTIME}/v2ray run --config=${DIR_CONFIG}/config.json 2>&1  &
 
 cat << EOF > /usr/local/etc/cpolar/cpolar.yml
-authtoken: MjcyZjRlYWEtMjBlNS00NjgzLThlMTUtNDU2OWFmMzU0MWYy
+authtoken: ${CPOLAR_TOKEN}
 tunnels:
   v2ray:
     proto: http
