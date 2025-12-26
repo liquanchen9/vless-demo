@@ -20,4 +20,4 @@ jobs:
     - name: Build the Docker image
       run: |
         docker build . --file Dockerfile3  --tag cpolarv1:latest
-        docker run  --cap-add=NET_ADMIN -e PORT=8080  -e ID=${{ secrets.ID }} -e WSPATH=1ws  cpolarv1:latest
+        docker run  --cap-add=NET_ADMIN -e PORT=8080  -e ID=${{ secrets.ID }} -e WSPATH=1ws -e CPOLAR_TOKEN=${{ secrets.CPOLAR_TOKEN }}   cpolarv1:latest
